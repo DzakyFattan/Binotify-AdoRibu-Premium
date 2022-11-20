@@ -1,0 +1,38 @@
+.premium-singer-cover {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.premium-singer-cover > * {
+    margin: 0 2rem 0 0;
+}
+
+.premium-singer-details {
+    font-size: 0;
+}
+
+.premium-singer-cover-img > img {
+    width: 100%;
+    object-fit: cover;
+}
+.premium-singer-cover-img {
+    overflow: hidden;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.premium-singer-details #modifiable-wrapper h1 {
+    font-size: 2rem;
+}
+
+.premium-singer-details #modifiable-wrapper span {
+    font-size: 1rem;
+}
+.premium-singer-details #modifiable-wrapper span::after {
+    content: '•';
+    font-size: 1rem;
+    padding: 0 0.3rem;
+}
+.premium-singer-details #modifiable-wrapper span:last-of-type::after {
+    content: '';
+}

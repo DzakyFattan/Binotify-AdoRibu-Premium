@@ -1,0 +1,18 @@
+.user-details{
+    font-size: 0;
+}
+
+.user-data{
+    margin: 0 0 1rem 4.5rem;
+}
+
+.user-data h1{
+    font-size: 2rem;
+}
+
+.add-song-icon {
+    cursor: pointer;
+    display: inline-block;
+    margin: 0 0.2rem;
+    width: 1.8rem;
+}
