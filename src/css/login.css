@@ -1,0 +1,35 @@
+.login-control > * {
+    margin-bottom: 1rem;
+}
+
+.login-fw {
+    max-width: 50vw;
+    margin: 0 auto 1rem auto;
+    padding: 1rem 2rem;
+}
+
+.login-fw a#logo {
+    font-size: 4rem;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+    z-index: 9;
+    justify-content: center;
+    text-align: center;
+}
+
+.login-fw a#logo span {
+    color: #6adcff;
+}
+
+@media only screen and (max-width: 991px) {
+    .login-fw {
+        max-width: 75vw;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .login-fw {
+        max-width: none;
+    }
+}
