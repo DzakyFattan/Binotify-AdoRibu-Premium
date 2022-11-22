@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import Singer_song from './singer-song';
+import Singer_content_data from './singer-content-data';
 import Song_data from './model/song_data'
 
 const Singer_content:React.FC = () =>{
@@ -34,7 +34,7 @@ const Singer_content:React.FC = () =>{
                 <ul>
                     <li>
                         {songs?.map((song) => (
-                            <Singer_song song={song} />
+                            <Singer_content_data song={song} />
                         ))}  
                     </li>
                 </ul>

@@ -5,6 +5,8 @@ const Register = () =>{
         <section className="login-fw flex-col">
             <a id="logo"><span>アド</span>リブ</a>
             <form action="" id="register-form" className="login-control flex-col form-album" autoComplete="off">
+                <input type="text" className="input-text" id="username-field" placeholder="Name" />
+                <div className="display-none" id="name-msg"></div>
                 <input type="text" className="input-text" id="username-field" placeholder="Username" />
                 <div className="display-none" id="uname-msg"></div>
                 <input type="text" className="input-text" id="email-field" placeholder="Email" />

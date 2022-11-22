@@ -1,0 +1,38 @@
+.premium-song-cover {
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+.premium-song-cover > * {
+    margin: 0 2rem 0 0;
+}
+
+.premium-song-details {
+    font-size: 0;
+}
+
+.premium-song-cover-img > img {
+    width: 100%;
+    object-fit: cover;
+}
+.premium-song-cover-img {
+    overflow: hidden;
+    max-width: 200px;
+    max-height: 200px;
+}
+
+.premium-song-details #modifiable-wrapper h1 {
+    font-size: 2rem;
+}
+
+.premium-song-details #modifiable-wrapper span {
+    font-size: 1rem;
+}
+.premium-song-details #modifiable-wrapper span::after {
+    content: '•';
+    font-size: 1rem;
+    padding: 0 0.3rem;
+}
+.premium-song-details #modifiable-wrapper span:last-of-type::after {
+    content: '';
+}
