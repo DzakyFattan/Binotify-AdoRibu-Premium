@@ -8,7 +8,7 @@ const Navbar:React.FC = () =>{
             <label htmlFor="dropdown-cbox" className="bar-icon-wrapper">
                 <img src="/assets/img/bars.svg"  className="bar-icon"/>
             </label>
-            <a href="/singer" id="logo"><span>アド</span>リブ <span className='premium'>PREMIUM</span></a>
+            <a href="/your-songs" id="logo"><span>アド</span>リブ <span className='premium'>PREMIUM</span></a>
             <ul>
                 <div className="dropdown-padder"></div>
                 <li><a href="/singer">Your Songs</a></li>
