@@ -24,12 +24,12 @@ const App:React.FC = () => {
     <div className="bg-wrap">
       <Router>
         <Routes>
+          <Route path = "/" element = {<><Login /></>} />
           <Route path = "/your-songs" element = {<><Navbar /><Singer_content /></>} />
           <Route path = "/subscription" element = {<><Navbar /><Subscription /></>} />
           <Route path = "/add-song" element = {<><Navbar /><Add_song /></>} />
           <Route path = "/song" element = {<><Navbar /><Premium_song /></>} />
           <Route path = "/register" element = {<><Register /></>} />
-          <Route path = "/login" element = {<><Login /></>} />
         </Routes>
       </Router>
     </div>
