@@ -1,7 +1,5 @@
 import React, {useEffect, useState} from 'react';
 import Song_data from './model/song_data'
-import ReactPaginate from 'react-paginate';
-
 
 interface song {
     song:Song_data;

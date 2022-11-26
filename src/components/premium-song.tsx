@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import Premium_song_data from './premium-song-data';
 import Song_data from './model/song_data'
-import ReactPaginate from 'react-paginate';
 
 const Premium_song = () =>{
     const [currentPage,setCurrentPage] = useState(1)
