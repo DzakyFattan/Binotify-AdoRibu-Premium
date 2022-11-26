@@ -4,7 +4,8 @@ import Subscription_request from './subscription-request';
 import '../css/subscription.css'
 
 const Subscription:React.FC = () => {
-
+    const [currentPage,setCurrentPage] = useState(1)
+    const maxLength = 3;
     const[request,setRequest] = useState<Subscription_data[]>([])
 
     const addRequest = () =>{
@@ -13,22 +14,64 @@ const Subscription:React.FC = () => {
         }
     }
 
+    const size = request.length+1;
+
+    function pagination(){
+        if(currentPage * maxLength < size){
+            return(
+                request.slice((currentPage-1) * maxLength, currentPage * maxLength).map((req) => (
+                    <Subscription_request 
+                    request={req} 
+                    setRequest={setRequest} />
+                ))
+            )
+        }
+
+        else{
+            return(
+                request.slice((currentPage-1) * maxLength, size).map((req) => (
+                    <Subscription_request 
+                    request={req} 
+                    setRequest={setRequest} />
+                ))
+            )
+        }
+    }
+
+    const addPage = () =>{
+        const pages = Math.ceil(size/maxLength)
+        if(currentPage<pages){
+            setCurrentPage(currentPage+1)
+        }
+    }
+
+    const subPage = () =>{
+        if (currentPage>1){
+            setCurrentPage(currentPage-1)
+        }
+    }
+
     return(
         <body>
-            <section className = "section-fw flex-col">
+            <section className = "user section-fw flex-col">
                 <div className = "flex-row">
                     <h1 className="section-title">Subscription Request</h1>
                 </div>
                 <div className="flew-rox">
                     <ul>
                         <li>
-                            {request?.map((req) => (
-                                <Subscription_request 
-                                request={req} 
-                                setRequest={setRequest} /> 
-                            ))}
+                            {pagination()}
                         </li>
                     </ul>
+                </div>
+                <div className="l-page-control-info flex-row">
+                    <div className="l-which-page">
+                        Page <span className="l-current-page">{currentPage}</span>
+                    </div>
+                    <div className="l-page-control-btn">
+                        <img src="/assets/img/left-icon.svg" alt="left" className="l-previous-page-icon" onClick={subPage}/>
+                        <img src="/assets/img/right-icon.svg" alt="right" className="l-next-page-icon" onClick={addPage}/>
+                    </div>
                 </div>
             </section>
             <button onClick={addRequest}>help</button>

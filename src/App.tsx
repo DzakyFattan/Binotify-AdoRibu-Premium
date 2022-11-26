@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState}from 'react';
 import Navbar from './components/navbar';
 import Singer_content from './components/singer-content';
 import Register from './components/register'
 import Login from './components/login'
 import Subscription from './components/subscription';
-import Premium_song from './components/song';
+import Premium_song from './components/premium-song';
+import Song from './components/song';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'
 import './css/global.css'
 import './css/header.css'
@@ -18,15 +19,18 @@ import './css/song.css'
 
 
 const App:React.FC = () => {
+  const [currentPage,setCurrentPage] = useState(1);
+
   return (
     <div className="bg-wrap">
       <Router>
         <Routes>
-          <Route path = "/" element = {<><Login /></>} />
           <Route path = "/your-songs" element = {<><Navbar /><Singer_content /></>} />
+          <Route path = "/premium" element = {<><Navbar /><Premium_song /></>} />
           <Route path = "/subscription" element = {<><Navbar /><Subscription /></>} />
-          <Route path = "/song" element = {<><Navbar /><Premium_song /></>} />
+          <Route path = "/song" element = {<><Navbar /><Song /></>} />
           <Route path = "/register" element = {<><Register /></>} />
+          <Route path = "/" element = {<><Login /></>} />
         </Routes>
       </Router>
     </div>

@@ -1,5 +1,6 @@
 import React from 'react';
 
+
 const Navbar:React.FC = () =>{
     return(
         <header>
@@ -11,8 +12,9 @@ const Navbar:React.FC = () =>{
             <a href="/your-songs" id="logo"><span>アド</span>リブ <span className='premium'>PREMIUM</span></a>
             <ul>
                 <div className="dropdown-padder"></div>
-                <li><a href="/singer">Your Songs</a></li>
-                <li><a href="#" id="logout-btn">Logout</a></li> 
+                <li><a href="/your-songs">Your Songs</a></li>
+                <li><a href="/premium">Premium Songs</a></li>
+                <li><a href="/" id="logout-btn">Logout</a></li> 
 
                 <li className="user-info-h">Logged in as </li>
             </ul>
