@@ -4,8 +4,6 @@ const Add_song:React.FC = () => {
     const [title, setTitle] = useState<string>("");
     const [file, setFile] = useState<string>("");
 
-    var fileInput = React.createRef() 
-
     let usernameData = localStorage.getItem('username')
     let accessTokenData = localStorage.getItem('accessToken')
     let username:string = ""

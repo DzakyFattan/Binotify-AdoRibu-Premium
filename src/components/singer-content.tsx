@@ -3,6 +3,7 @@ import Singer_content_data from './singer-content-data';
 import Song_data from './model/song_data';
 import Left_icon from './img/left-icon.svg'
 import Right_icon from './img/right-icon.svg'
+import { Link } from 'react-router-dom';
 
 const Singer_content:React.FC = () =>{
     const [currentPage,setCurrentPage] = useState(1)
@@ -27,7 +28,6 @@ const Singer_content:React.FC = () =>{
     const sendUser={
         method: 'GET',
         headers:{authorization:accessToken},
-        user:{name:username}
     }
 
     const getSong = async () => {
@@ -47,7 +47,9 @@ const Singer_content:React.FC = () =>{
         if(currentPage * maxLength < size){
             return(
                 songs.slice((currentPage-1) * maxLength, currentPage * maxLength).map((song) => (
-                    <Singer_content_data song={song} />
+                    <Link to={{pathname: "/song/"+song.id_song}}>
+                        <Singer_content_data song={song} />
+                    </Link>
                 ))
             )
         }
@@ -55,7 +57,9 @@ const Singer_content:React.FC = () =>{
         else{
             return(
                 songs.slice((currentPage-1) * maxLength, size).map((song) => (
-                    <Singer_content_data song={song} />
+                    <Link to={{pathname: "/song/"+song.id_song}}>
+                        <Singer_content_data song={song} />
+                    </Link>
                 ))
             )
         }
@@ -63,7 +67,7 @@ const Singer_content:React.FC = () =>{
 
     useEffect(() => {
         getSong()
-    });
+    }, []);
 
     const addPage = () =>{
         const pages = Math.ceil(size/maxLength)

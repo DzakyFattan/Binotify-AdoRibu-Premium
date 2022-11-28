@@ -1,28 +1,99 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import Song_data from './model/song_data';
 
-const Song = () => {
+const Song:React.FC = () => {
+    const [song,setSong] = useState<Song_data>()
+    const [newfile, setNewFile] = useState<string>("")
+    const [newtitle, setNewTitle] = useState<string>("")
+
+    let result = useParams()
+    let id = parseInt(result.id_song!, 10) + 0
+
+    let usernameData = localStorage.getItem('username')
+    let accessTokenData = localStorage.getItem('accessToken')
+    let username:string = ""
+    let accessToken:string = ""
+
+    if (usernameData){
+        username=JSON.parse(usernameData);
+    }
+
+    if (accessTokenData){
+        accessToken=JSON.parse(accessTokenData);
+    }
+
+    const openEdit = () => {
+        document.getElementById("edit-menu")!.classList.toggle("display-none")
+    }
+
+    const getData = {
+        method:'GET',
+        headers: { authorization:accessToken, 'Content-Type': 'application/json' }
+    }
+
+    const updateData = {
+        method:'POST',
+        headers: { authorization:accessToken, 'Content-Type': 'application/json' },
+        body: JSON.stringify({id_song:id, judul:newtitle, audio_path:newfile})
+    }
+
+    const deleteData = {
+        method:'POST',
+        headers: { authorization:accessToken, 'Content-Type': 'application/json' },
+        body: JSON.stringify({id_song:id})
+    }
+
+    const getSong = async () => {
+        const request = await fetch("http://localhost:3001/api/getSongs", getData);
+        const response = await request.json();
+        response.map((result:Song_data) => {
+            if(result.id_song == id){
+                setSong(result)
+                setNewFile(result!.audio_path)
+                setNewTitle(result!.judul)
+            }
+        })
+    }
+
+    const updateSong = async () => {
+        const request = await fetch("http://localhost:3001/api/updateSong", updateData);
+        const response = await request.json();
+        console.log(response)
+        
+    }
+    
+    const deleteSong = async () => {
+        const request = await fetch("http://localhost:3001/api/removeSong", deleteData);
+        const response = await request.json();
+        console.log(response)
+        
+    }
+
+    useEffect(() => {
+        getSong()
+    },[3]);
+
     return(
         <div>
             <section className="song-cover section-fw flex-row">
                 <div className="song-details">
                     <div id="modifiable-wrapper">
-                        <h1 className = "section-title">trial</h1>
-                        <span>trial</span>
-                        <span>trial</span>
+                        <h1 className = "section-title">{song?.judul}</h1>
                     </div>
                     <div className="song-control flex-row">
-                        <div className="button-filter play-song-btn">Delete Entry</div>
-                        <div className="button-filter edit-song-btn">Edit Entry</div>
+                        <div className="button-filter play-song-btn" onClick={deleteSong}>Delete Entry</div>
+                        <div className="button-filter edit-song-btn" onClick={openEdit}>Edit Entry</div>
                     </div>
                 </div>
             </section>
-            <section className="display-none section-fw flex-col">
+            <section id="edit-menu" className="display-none section-fw flex-col">
                 <form action="" className="add-song-fw flex-col" autoComplete="off">
-                    <input type="text" name="judul_lagu" className="input-text" placeholder="Title" />               
-                    <input type="file" id="song-audio-upload" name="song_audio_upload" className="hide-input-file" accept="audio/*" />
+                    <input type="text" name="judul_lagu" className="input-text" placeholder="Title" value={newtitle} onChange={(e) => setNewTitle(e.target.value)}/>               
+                    <input type="file" id="song-audio-upload" name="song_audio_upload" className="hide-input-file" accept="audio/*" onChange={(e) => setNewFile(e.currentTarget.files![0].name)} />
                     <label htmlFor="song-audio-upload" className="button-filter song-upload-btn">Upload Song Audio</label>
-                    <div className="input-gathered">Song file: <span id = "song-file"></span></div>
-                    <input type="button" name="submit-btn" className="button-filter" value="Submit"></input>
+                    <div className="input-gathered">Song file: <span id = "song-file">{newfile}</span></div>
+                    <input type="button" name="submit-btn" className="button-filter" value="Submit" onClick={updateSong}></input>
                 </form>
             </section>
         </div>
