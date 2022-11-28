@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React from 'react';
 import Song_data from './model/song_data'
 
 interface song {
@@ -15,9 +15,7 @@ const Singer_content_data:React.FC<song> = ({song}) =>{
             </div>
             <div className="l-elmt-detail-wrapper">
                 <div className="l-elmt-detail"> 
-                    <div className="l-elmt-detail-title">{song.title}</div>
-                    <span>{song.date}</span> 
-                    <span>{song.genre}</span>
+                    <div className="l-elmt-detail-title">{song.judul}</div>
                 </div>
             </div>
         </a>

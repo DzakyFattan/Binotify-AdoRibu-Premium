@@ -2,6 +2,8 @@ import React, {useState} from 'react';
 import Subscription_data from './model/subscription_data';
 import Subscription_request from './subscription-request';
 import '../css/subscription.css'
+import Left_icon from './img/left-icon.svg'
+import Right_icon from './img/right-icon.svg'
 
 const Subscription:React.FC = () => {
     const [currentPage,setCurrentPage] = useState(1)
@@ -69,8 +71,8 @@ const Subscription:React.FC = () => {
                         Page <span className="l-current-page">{currentPage}</span>
                     </div>
                     <div className="l-page-control-btn">
-                        <img src="/assets/img/left-icon.svg" alt="left" className="l-previous-page-icon" onClick={subPage}/>
-                        <img src="/assets/img/right-icon.svg" alt="right" className="l-next-page-icon" onClick={addPage}/>
+                        <img src={Left_icon} alt="left" className="l-previous-page-icon" onClick={subPage}/>
+                        <img src={Right_icon} alt="right" className="l-next-page-icon" onClick={addPage}/>
                     </div>
                 </div>
             </section>

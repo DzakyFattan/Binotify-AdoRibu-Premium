@@ -1,16 +1,44 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import Singer_content_data from './singer-content-data';
-import Song_data from './model/song_data'
+import Song_data from './model/song_data';
+import Left_icon from './img/left-icon.svg'
+import Right_icon from './img/right-icon.svg'
 
 const Singer_content:React.FC = () =>{
     const [currentPage,setCurrentPage] = useState(1)
-    const maxLength = 4;
     const [songs,setSongs] = useState<Song_data[]>([])
+    const maxLength = 4;
+
+    const left_icon = require("./img/left-icon.svg") as string;
+
+    let usernameData = localStorage.getItem('username')
+    let accessTokenData = localStorage.getItem('accessToken')
+    let username:string = ""
+    let accessToken:string = ""
+
+    if (usernameData){
+        username=JSON.parse(usernameData);
+    }
+
+    if (accessTokenData){
+        accessToken=JSON.parse(accessTokenData);
+    }
+
+    const sendUser={
+        method: 'GET',
+        headers:{authorization:accessToken},
+        user:{name:username}
+    }
+
+    const getSong = async () => {
+        const request = await fetch("http://localhost:3001/api/getSongs", sendUser);
+        const response = await request.json();
+        setSongs(response)
+
+    }
 
     const addSong = () =>{
-        if(songs){
-            setSongs([...songs,{picture:"hakita.png", title:"trial", date:"010101", genre:"abcde"}])
-        }
+        getSong()
     }
 
     const size = songs.length+1;
@@ -33,6 +61,10 @@ const Singer_content:React.FC = () =>{
         }
     }
 
+    useEffect(() => {
+        getSong()
+    });
+
     const addPage = () =>{
         const pages = Math.ceil(size/maxLength)
         if(currentPage<pages){
@@ -51,7 +83,7 @@ const Singer_content:React.FC = () =>{
             <div className = "user section-fw flex-row">
                 <div className = "user-data">
                     <div>
-                        <h1 className='section-title'>abcde</h1>
+                        <h1 className='section-title'>{username}</h1>
                         <div className='l-elmt-detail'>
                         <span>PENYANYI</span>
                         </div>
@@ -75,8 +107,8 @@ const Singer_content:React.FC = () =>{
                         Page <span className="l-current-page">{currentPage}</span>
                     </div>
                     <div className="l-page-control-btn">
-                        <img src="/assets/img/left-icon.svg" alt="left" className="l-previous-page-icon" onClick={subPage}/>
-                        <img src="/assets/img/right-icon.svg" alt="right" className="l-next-page-icon" onClick={addPage}/>
+                        <img src={Left_icon} alt="left" className="l-previous-page-icon" onClick={subPage}/>
+                        <img src={Right_icon} alt="right" className="l-next-page-icon" onClick={addPage}/>
                     </div>
                 </div>
             </section>

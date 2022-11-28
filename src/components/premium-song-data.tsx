@@ -13,9 +13,7 @@ const Premium_song_data:React.FC<song> = ({song}) => {
             </div>
             <div className="l-elmt-detail-wrapper">
                 <div className="l-elmt-detail"> 
-                    <div className="l-elmt-detail-title">{song.title}</div>
-                    <span>{song.date}</span> 
-                    <span>{song.genre}</span>
+                    <div className="l-elmt-detail-title">{song.judul}</div>
                 </div>
             </div>
             <input type="button" value="Add Song" className="button-request"/>

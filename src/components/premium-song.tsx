@@ -9,7 +9,7 @@ const Premium_song = () =>{
 
     const addSong = () =>{
         if(songs){
-            setSongs([...songs,{picture:"hakita.png", title:"trial", date:"010101", genre:"abcde"}])
+            
         }
     }
 
