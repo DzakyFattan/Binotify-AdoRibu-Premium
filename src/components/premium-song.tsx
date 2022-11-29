@@ -47,7 +47,7 @@ const Premium_song = () =>{
     }
 
     return(
-        <body>
+        <div className='side-content'>
             <section className = "section-fw flex-col">
                 <div className = "flex-row">
                     <h1 className="section-title">Premium Song List</h1>
@@ -69,8 +69,7 @@ const Premium_song = () =>{
                     </div>
                 </div>
             </section>
-            <button onClick={addSong}>help</button>
-        </body>
+        </div>
     )
 }
 

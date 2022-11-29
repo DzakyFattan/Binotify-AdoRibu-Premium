@@ -44,6 +44,19 @@ body {
     min-height: 100vh;
 }
 
+.side-content{
+    width:80%;
+    position:relative;
+    margin-left:20%;
+}
+
+@media only screen and (max-width: 768px) {
+    .side-content{
+        width:100%;
+        margin-left:0;
+    }
+}
+
 /* REUSABLE */
 
 .flex-row {

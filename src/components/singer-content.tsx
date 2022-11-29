@@ -37,10 +37,6 @@ const Singer_content:React.FC = () =>{
 
     }
 
-    const addSong = () =>{
-        getSong()
-    }
-
     const size = songs.length+1;
 
     function pagination(){
@@ -83,7 +79,7 @@ const Singer_content:React.FC = () =>{
     }
 
     return(
-        <div>
+        <div className='side-content'>
             <div className = "user section-fw flex-row">
                 <div className = "user-data">
                     <div>
@@ -116,7 +112,6 @@ const Singer_content:React.FC = () =>{
                     </div>
                 </div>
             </section>
-            <button onClick={addSong}>help</button>
         </div>
     )
 }

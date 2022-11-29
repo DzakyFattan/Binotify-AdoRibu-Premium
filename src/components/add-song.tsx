@@ -32,8 +32,9 @@ const Add_song:React.FC = () => {
     }
 
     return(
-        <section className="section-fw flex-col">
+        <section className="section-fw flex-col side-content">
             <form action="" className="add-song-fw flex-col" autoComplete="off">
+                <h1>Add Your Song</h1>
                 <input type="text" name="judul_lagu" className="input-text" placeholder="Title" onChange={(e) => setTitle(e.target.value)}/>               
                 <input type="file" id="song-audio-upload" name="song_audio_upload" className="hide-input-file" accept="audio/*" onChange={(e) => setFile(e.currentTarget.files![0].name) } />
                 <label htmlFor="song-audio-upload" className="button-filter song-upload-btn">Upload Song Audio</label>

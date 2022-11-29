@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Subscription_data from './model/subscription_data';
 import Subscription_request from './subscription-request';
 import '../css/subscription.css'
@@ -10,13 +10,33 @@ const Subscription:React.FC = () => {
     const maxLength = 3;
     const[request,setRequest] = useState<Subscription_data[]>([])
 
-    const addRequest = () =>{
-        if(request){
-            setRequest([...request,{date:"010101", sender:"MK", singer:"hakita"}])
-        }
+    const size = request.length+1;
+
+    let usernameData = localStorage.getItem('username')
+    let accessTokenData = localStorage.getItem('accessToken')
+    let username:string = ""
+    let accessToken:string = ""
+
+    if (usernameData){
+        username=JSON.parse(usernameData);
     }
 
-    const size = request.length+1;
+    if (accessTokenData){
+        accessToken=JSON.parse(accessTokenData);
+    }
+
+    const requestData={
+        method: 'POST',
+        headers:{'authorization':accessToken, 'Content-Type':'application/json'},
+        body: JSON.stringify({'creator_id':"", 'subscriber_id':"", 'status':""})
+    }
+
+    const getRequest = async () => {
+        const request = await fetch("http://localhost:3001/api/getSubRequests", requestData);
+        const response = await request.json();
+        console.log(response)
+
+    }
 
     function pagination(){
         if(currentPage * maxLength < size){
@@ -53,8 +73,12 @@ const Subscription:React.FC = () => {
         }
     }
 
+    useEffect(() => {
+        getRequest()
+    }, []);
+
     return(
-        <body>
+        <div className='side-content'>
             <section className = "user section-fw flex-col">
                 <div className = "flex-row">
                     <h1 className="section-title">Subscription Request</h1>
@@ -76,8 +100,7 @@ const Subscription:React.FC = () => {
                     </div>
                 </div>
             </section>
-            <button onClick={addRequest}>help</button>
-        </body>
+        </div>
     )
 }
 
