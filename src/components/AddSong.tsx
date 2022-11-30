@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 const AddSong:React.FC = () => {
     const [title, setTitle] = useState<string>("");
     const [file, setFilename] = useState<string>("");
-    let fileData:File|undefined = undefined;
+    const [fileData, setFileData] = useState<File>();
 
     let usernameData = localStorage.getItem('username')
     let accessTokenData = localStorage.getItem('accessToken')
@@ -20,12 +20,11 @@ const AddSong:React.FC = () => {
 
     const setFile = (e:React.ChangeEvent<HTMLInputElement>) =>{
         setFilename(e.currentTarget.files![0].name);
-        fileData = (e.target as HTMLInputElement).files![0];
+        setFileData(e.currentTarget.files![0]);
+        console.log('ok')
     }
 
     const setSong = async () =>{
-        console.log(title)
-        console.log(fileData)
 
         let formData = new FormData();
         formData.append('audio_file', fileData!)
@@ -33,8 +32,8 @@ const AddSong:React.FC = () => {
 
         const addSong = {
             method:'POST',
-            headers: { authorization:accessToken, 'Content-Type':'multipart/form-data'},
-            body: formData
+            headers: { "authorization":accessToken},
+            body:formData
         }
 
         const request = await fetch("http://localhost:3001/api/addSong", addSong);
@@ -47,7 +46,7 @@ const AddSong:React.FC = () => {
             <form action="" className="add-song-fw flex-col" autoComplete="off">
                 <h1>Add Your Song</h1>
                 <input type="text" name="judul_lagu" className="input-text" placeholder="Title" onChange={(e) => setTitle(e.target.value)}/>               
-                <input type="file" id="song-audio-upload" name="song_audio_upload" className="hide-input-file" accept="audio/*" onChange={(e) => setFilename(e.currentTarget.files![0].name) } />
+                <input type="file" id="song-audio-upload" name="song_audio_upload" className="hide-input-file" accept="audio/*" onChange={setFile} />
                 <label htmlFor="song-audio-upload" className="button-filter song-upload-btn">Upload Song Audio</label>
                 <div className="input-gathered">Song file: <span id = "song-file">{file}</span></div>
                 <input type="button" name="submit-btn" className="button-filter" value="Submit" onClick={setSong}></input>
