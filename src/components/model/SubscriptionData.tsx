@@ -1,7 +1,7 @@
-interface Subscription_data{
+interface SubscriptionData {
     date: string;
     sender: string;
     singer: string;
 }
 
-export default Subscription_data
+export default SubscriptionData

@@ -1,13 +1,13 @@
 import React from 'react';
-import Subscription_data from './model/subscription_data';
+import SubscriptionData from './model/SubscriptionData';
 import '../css/subscription.css'
 
 interface Sub{
-    request:Subscription_data;
-    setRequest:React.Dispatch<React.SetStateAction<Subscription_data[]>>
+    request:SubscriptionData;
+    setRequest:React.Dispatch<React.SetStateAction<SubscriptionData[]>>
 }
 
-const Subscription_request:React.FC<Sub> = ({request,setRequest}) => {
+const SubscriptionRequest:React.FC<Sub> = ({request,setRequest}) => {
     return(
         <a className="request-detail">
             <div className="l-elmt-detail-wrapper">
@@ -23,4 +23,4 @@ const Subscription_request:React.FC<Sub> = ({request,setRequest}) => {
     )
 }
 
-export default Subscription_request
+export default SubscriptionRequest

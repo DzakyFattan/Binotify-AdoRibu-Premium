@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const Add_song:React.FC = () => {
+const AddSong:React.FC = () => {
     const [title, setTitle] = useState<string>("");
     const [file, setFile] = useState<string>("");
 
@@ -45,4 +45,4 @@ const Add_song:React.FC = () => {
     )
 }
 
-export default Add_song
+export default AddSong

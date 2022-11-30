@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Premium_singer = () => {
+const PremiumSinger = () => {
     
     return(
         <div>
@@ -19,4 +19,4 @@ const Premium_singer = () => {
     )
 }
 
-export default Premium_singer
+export default PremiumSinger

@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from 'react';
-import Singer_content_data from './singer-content-data';
-import Song_data from './model/song_data';
+import SingerContentData from './SingerContentData';
+import SongData from './model/SongData';
 import Left_icon from './img/left-icon.svg'
 import Right_icon from './img/right-icon.svg'
 import { Link } from 'react-router-dom';
 
-const Singer_content:React.FC = () =>{
+const SingerContent:React.FC = () =>{
     const [currentPage,setCurrentPage] = useState(1)
-    const [songs,setSongs] = useState<Song_data[]>([])
+    const [songs,setSongs] = useState<SongData[]>([])
     const maxLength = 4;
 
     const left_icon = require("./img/left-icon.svg") as string;
@@ -44,7 +44,7 @@ const Singer_content:React.FC = () =>{
             return(
                 songs.slice((currentPage-1) * maxLength, currentPage * maxLength).map((song) => (
                     <Link to={{pathname: "/song/"+song.id_song}}>
-                        <Singer_content_data song={song} />
+                        <SingerContentData song={song} />
                     </Link>
                 ))
             )
@@ -54,7 +54,7 @@ const Singer_content:React.FC = () =>{
             return(
                 songs.slice((currentPage-1) * maxLength, size).map((song) => (
                     <Link to={{pathname: "/song/"+song.id_song}}>
-                        <Singer_content_data song={song} />
+                        <SingerContentData song={song} />
                     </Link>
                 ))
             )
@@ -116,4 +116,4 @@ const Singer_content:React.FC = () =>{
     )
 }
 
-export default Singer_content
+export default SingerContent

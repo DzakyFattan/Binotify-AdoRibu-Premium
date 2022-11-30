@@ -1,26 +1,24 @@
 import React from 'react';
-import Song_data from './model/song_data'
+import SongData from './model/SongData'
 
 interface song {
-    song:Song_data;
+    song: SongData;
 }
 
-const Singer_content_data:React.FC<song> = ({song}) =>{  
-
-    return(
-        
-        <div className="l-elmt">
+const PremiumSongData: React.FC<song> = ({ song }) => {
+    return (
+        <a href="" className="l-elmt">
             <div className="l-elmt-img-wrapper">
                 <img src="abc.png" alt="Song List Image" className="s-img-cover" />
             </div>
             <div className="l-elmt-detail-wrapper">
-                <div className="l-elmt-detail"> 
+                <div className="l-elmt-detail">
                     <div className="l-elmt-detail-title">{song.judul}</div>
                 </div>
             </div>
-        </div>
-
+            <input type="button" value="Add Song" className="button-request" />
+        </a>
     )
 }
 
-export default Singer_content_data
+export default PremiumSongData

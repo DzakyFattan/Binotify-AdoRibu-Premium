@@ -1,24 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Song_data from './model/song_data';
+import SongData from './model/SongData';
 
 const Song:React.FC = () => {
-    const [song,setSong] = useState<Song_data>()
+    const [song,setSong] = useState<SongData>()
     const [newfile, setNewFile] = useState<string>("")
     const [newtitle, setNewTitle] = useState<string>("")
 
     let result = useParams()
     let id = parseInt(result.id_song!, 10) + 0
-
+    /*
     let usernameData = localStorage.getItem('username')
-    let accessTokenData = localStorage.getItem('accessToken')
     let username:string = ""
-    let accessToken:string = ""
-
     if (usernameData){
         username=JSON.parse(usernameData);
-    }
+    } */
 
+    let accessTokenData = localStorage.getItem('accessToken')
+    let accessToken:string = ""
     if (accessTokenData){
         accessToken=JSON.parse(accessTokenData);
     }
@@ -47,7 +46,7 @@ const Song:React.FC = () => {
     const getSong = async () => {
         const request = await fetch("http://localhost:3001/api/getSongs", getData);
         const response = await request.json();
-        response.map((result:Song_data) => {
+        response.map((result:SongData) => {
             if(result.id_song == id){
                 setSong(result)
                 setNewFile(result!.audio_path)
@@ -69,10 +68,10 @@ const Song:React.FC = () => {
         console.log(response)
         
     }
-
+    /*
     useEffect(() => {
         getSong()
-    },[3]);
+    },[]); */
 
     return(
         <div>

@@ -1,18 +1,18 @@
 import React from 'react';
-import Song_data from './model/song_data'
+import SongData from './model/SongData'
 
 interface song {
-    song:Song_data;
+    song: SongData;
 }
 
-const Singer_song:React.FC<song> = ({song}) =>{
-    return(
+const SingerSong: React.FC<song> = ({ song }) => {
+    return (
         <a href="" className="l-elmt">
             <div className="l-elmt-img-wrapper">
-                <img src="abc.png" alt="Song List Image" className="s-img-cover" />
+                <img src="abc.png" alt="Song List" className="s-img-cover" />
             </div>
             <div className="l-elmt-detail-wrapper">
-                <div className="l-elmt-detail"> 
+                <div className="l-elmt-detail">
                     <div className="l-elmt-detail-title">{song.judul}</div>
                 </div>
             </div>
@@ -20,4 +20,4 @@ const Singer_song:React.FC<song> = ({song}) =>{
     )
 }
 
-export default Singer_song
+export default SingerSong

@@ -10,3 +10,10 @@ services:
     volumes:
       - "./:/app"
       - "./:/node_modules"
+    networks:
+      - tubes2-network
+
+networks:
+  tubes2-network:
+    name: tubes2-network
+    driver: bridge
