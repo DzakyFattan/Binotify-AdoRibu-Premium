@@ -21,7 +21,6 @@ const AddSong:React.FC = () => {
     const setFile = (e:React.ChangeEvent<HTMLInputElement>) =>{
         setFilename(e.currentTarget.files![0].name);
         setFileData(e.currentTarget.files![0]);
-        console.log('ok')
     }
 
     const setSong = async () =>{
@@ -32,7 +31,7 @@ const AddSong:React.FC = () => {
 
         const addSong = {
             method:'POST',
-            headers: { "authorization":accessToken},
+            headers: { 'authorization':accessToken},
             body:formData
         }
 

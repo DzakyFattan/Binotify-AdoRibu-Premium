@@ -9,19 +9,38 @@ const Register = () => {
     const [email, setEmail] = useState("")
     const [status, updateStatus] = useState(0)
     const [data, updateData] = useState("")
+    const uname_regex = /^[a-zA-Z0-9_]+$/;
+    const email_regex = /^([a-zA-Z0-9_\-\.]+)@([a-zA-Z0-9_\-\.]+)\.([a-zA-Z]{2,5})$/;
+
+    const testUname = () =>{
+        const regex = new RegExp(uname_regex)
+        return regex.test(uname)
+    }
+
+    const testEmail = () =>{
+        const regex = new RegExp(email_regex)
+        return regex.test(email)
+    }
 
     const sendData = {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username: uname, password: password, email: email, name_user: name })
+        body: JSON.stringify({ 'username': uname, 'password': password, 'email': email, 'name_user': name })
     }
 
     const setUser = async () => {
-        const request = await fetch("http://localhost:3001/api/register", sendData)
-        const response = await request.json()
-        console.log(response)
-        updateStatus(request.status)
-        updateData(JSON.stringify(response.accessToken))
+
+        if (password == confpassword && name != "" && uname != "" && password != "" && email !="" && testUname() && testEmail()){
+
+            const request = await fetch("http://localhost:3001/api/register", sendData)
+            const response = await request.json()
+            console.log(response)
+            updateStatus(request.status)
+            updateData(JSON.stringify(response.accessToken))
+            
+        } else {
+            document.getElementById("login-msg")!.innerHTML="register fail"
+        }
 
     }
 

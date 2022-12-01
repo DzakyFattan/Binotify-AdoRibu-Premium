@@ -71,10 +71,10 @@ const Subscription: React.FC = () => {
             setCurrentPage(currentPage - 1)
         }
     }
-    /*
+    
     useEffect(() => {
         getRequest()
-    }, []); */
+    }, []); 
 
     return (
         <div className='side-content'>
