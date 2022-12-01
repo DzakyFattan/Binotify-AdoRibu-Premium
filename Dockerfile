@@ -1,7 +1,5 @@
 FROM node:alpine
 WORKDIR /app
-COPY package*.json /app
-COPY tsconfig.json /app
-RUN npm install 
-COPY . /app
-CMD ["npm", "start"]
+COPY ./build ./
+RUN npm install -g serve
+CMD ["serve", "-s", "-l", "3000", "."]

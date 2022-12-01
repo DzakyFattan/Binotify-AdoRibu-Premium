@@ -1,17 +1,17 @@
-version: '3.9'
+version: "3.3"
 services:
-  client:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    container_name: binotify-premium-app
-    ports:
-      - "3000:3000"
+  react-app:
+    container_name: 'tubes2-premium-app'
+    build: .
     volumes:
-      - "./:/app"
-      - "./:/node_modules"
+      - ./src:/app/src
+    ports:
+      - '3006:3000'
+    stdin_open: true
+    tty: true
     networks:
       - tubes2-network
+    restart: always
 
 networks:
   tubes2-network:

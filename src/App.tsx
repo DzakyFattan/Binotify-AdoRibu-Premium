@@ -1,42 +1,55 @@
-import React from 'react';
-import Navbar from './components/Navbar';
-import SingerContent from './components/SingerContent';
-import Register from './components/Register'
-import Login from './components/Login'
-import Subscription from './components/Subscription';
-import PremiumSong from './components/PremiumSong';
-import AddSong from './components/AddSong';
-import Song from './components/Song';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
-import './css/global.css'
-import './css/header.css'
-import './css/list-display.css'
-import './css/login.css'
-import './css/management.css'
-import './css/singer-content.css'
-import './css/song.css'
-import './css/add-song.css'
-/*import PremiumSinger from './components/premium-singer';*/
-/*import PremiumSinger_list from './components/premium-singer-list';*/
+import * as React from "react"
+import {
+  ChakraProvider
+} from "@chakra-ui/react"
+import { Main } from "./page/Home"
+import customTheme from "./config/theme"
+import { Routes, Route, Navigate } from "react-router-dom"
+import Login from "./page/Login"
+import Register from "./page/Register"
+import Four04 from "./page/404"
+import { useSelector } from "react-redux"
+import AdmitSub from "./page/AdmitSub"
+import AddSong from "./page/AddSong"
+import SongList from "./page/SongList"
+import SongDetails from "./page/SongDetails"
+import Navbar from "./page/Navbar"
 
 
 const App = () => {
-
+  // get logged store
+  const isLogin = useSelector((state: any) => state.session.isLogin)
+  const isAdmin = useSelector((state: any) => state.session.user.isadmin)
   return (
-    <div className="bg-wrap">
-      <Router>
-        <Routes>
-          <Route path="/your-songs" element={<><Navbar /><SingerContent /></>} />
-          <Route path="/add-song" element={<><Navbar /><AddSong /></>} />
-          <Route path="/premium" element={<><Navbar /><PremiumSong /></>} />
-          <Route path="/subscription" element={<><Navbar /><Subscription /></>} />
-          <Route path="/song/:id_song" element={<><Navbar /><Song /></>} />
-          <Route path="/register" element={<><Register /></>} />
-          <Route path="/" element={<><Login /></>} />
-        </Routes>
-      </Router>
-    </div>
-  );
+    <ChakraProvider theme={customTheme}>
+      <Routes>
+        <Route path="/"
+          element={
+            isLogin ? 
+              isAdmin ? (<><Navbar /><AdmitSub /></>): (<><Navbar /><SongList /></>)
+            : <Navigate to="/login" />
+          }
+        />  
+        <Route path="/login" element={
+          isLogin ? <Navigate to="/" /> : <Login />
+        } />
+        <Route path="/register" element={
+          isLogin ? <Navigate to="/" /> : <Register />
+        } />
+        <Route path="/addsong" element={
+          isLogin ? (<><Navbar /><AddSong /></>) : <Navigate to="/login" />
+        } />
+        <Route path="/song/:song_id" element={
+          isLogin ? ((<><Navbar /><SongDetails /></>)) : <Navigate to="/login" />
+        } />
+        <Route path="*" element={
+          isLogin ? <Four04 /> : <Navigate to="/login" />
+        } />
+      </Routes>
+    </ChakraProvider>
+  )
 }
 
-export default App;
+export {
+  App
+}
