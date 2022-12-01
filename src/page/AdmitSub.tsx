@@ -74,7 +74,7 @@ const AdmitSub = () => {
                     <Stack key={idx} direction={['column', 'row']} spacing={4} border='2px' borderRadius={8} p={4} mb={4}>
                       <VStack flex={1} spacing={1} alignItems='flex-start'>
                         <Text fontSize={{ base: '16px', md: '20px', lg: '20px' }}>Creator: {item.creator_info.name_user} ({item.creator_info.username})</Text>
-                        <Text fontSize={{ base: '16px', md: '20px', lg: '20px' }}>Subscriber: {item.subscriber_info.name_user} ({item.subscriber_info.username})</Text>
+                        <Text fontSize={{ base: '16px', md: '20px', lg: '20px' }}>Subscriber ID: {item.subscriber_info.id_user}</Text>
                       </VStack>
                       <Center>
                       <Button colorScheme='blue' w="full" size='sm'
